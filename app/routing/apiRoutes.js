@@ -29,47 +29,74 @@ module.exports = function(app) {
   // Then the server saves the data to the userData array)
   // ---------------------------------------------------------------------------
 
+  var comparisonUserTotalScore = 0;
+
+  var friendScores = [];
+
   app.post("/api/friends", function(req, res) {
 
-    userData.push(req.body);
-
+    // Store current user scores in array.
     var currentUserScores = req.body.scores;
 
-    console.log("Current User Scores: " + currentUserScores);
+    console.log("Current user scores: " + currentUserScores);
 
-    var leastDifference = 0;
-
-    for (var i = 0; i < currentUserScores.length; i++) {
-      leastDifference += Math.abs(currentUserScores[i] - userData[0].scores[i]);
-    }
-
-    console.log("First value for leastDifference: " + leastDifference);
-
-    if (userData.length <= 2) {
-      console.log("We've only got one friend!" + userData[0]);
-    } else {
-      for (var i = 1; i < userData.length; i++) {
-        var comparisonUserScores = userData[i].scores;
-        console.log("Comparison User Scores: " + comparisonUserScores);
-        var totalDifference = 0;
-        for (var i = 0; i < currentUserScores.length; i++) {
-          totalDifference+=Math.abs(currentUserScores[i] - comparisonUserScores[i]);
-          console.log("Total difference is growing: " + totalDifference);
-        }
-        if (leastDifference >= totalDifference) {
-          leastDifference = totalDifference;
-          console.log("Resetting leastDifference: " + leastDifference);
-        }
-      } 
-    }
-
-    //console.log(userData);
     // Determine the user's most compatible friend.
-    // Convert each user's results into a simple array of numbers.
-    // Compare difference between current user's score and each of the other users' scores.
-    // Comparison done question by question, adding up differences to determine total Difference.
-    // Remember to use absolute value for differences (no negative values).
-    // Once you've found the current user's most compatible friend, display in pop-up modal.
-    // The modal should display both the name and picture of the closest match.
+    for (var i = 0; i < userData.length; i++) {
+
+      // Convert each user's results in to an array of numbers.
+      var comparisonUserScores = userData[i].scores;
+
+      // Find total difference between current user and each user.
+      comparisonUserTotalScore = calculateUserCompatibilityScore(currentUserScores, comparisonUserScores);
+
+      // Build up array of user compatibility scores.
+      friendScores.push(comparisonUserTotalScore);
+
+    }
+
+    console.log("Array of friend scores: " + friendScores);
+
+    var index = 0;
+    var value = friendScores[0];
+
+    // Need to get index of lowest score.
+    // Tried to use Math.min and it return NaN.
+    // So went with tried and true vanilla.
+    for (var i = 0; i < friendScores.length; i++) {
+      console.log("Value of item in array: " + friendScores[i]);
+      if (friendScores[i] < value) {
+        value = friendScores[i];
+        index = i;
+      }
+    }
+
+    console.log("We are nearly getting a best friend: " + index);
+
+    // OMG we are getting a best friend.
+    console.log("Best friend name: " + userData[index].name);
+
+    // Push new user to user array.
+    userData.push(req.body);
+
   });
 };
+
+var totalDifference = 0;
+
+// Find total difference between current user and another user.
+function calculateUserCompatibilityScore(currentUserScores, comparisonUserScores) {
+
+  // Reset the total difference counter each time function called.
+  totalDifference = 0;
+
+  for (var i = 0; i < currentUserScores.length; i++) {
+
+    totalDifference+=Math.abs(currentUserScores[i] - comparisonUserScores[i]);
+  }
+
+  console.log("Final total difference for friend: " + totalDifference);
+
+  return totalDifference;
+};
+
+
