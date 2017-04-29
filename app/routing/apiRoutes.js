@@ -70,11 +70,10 @@ module.exports = function(app) {
       }
     }
 
-    console.log("We are nearly getting a best friend: " + index);
-
     // OMG we are getting a best friend.
     console.log("Best friend name: " + userData[index].name);
 
+    // Send best friend as a response so we can display in modal.
     res.send(userData[index]);
 
     // Push new user to user array.
