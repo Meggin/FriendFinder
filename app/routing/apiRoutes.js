@@ -21,17 +21,17 @@ module.exports = function(app) {
     res.json(userData);
   });
 
-  // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out user friend survey... this data is then sent to the server...
-  // Then the server saves the data to the userData array)
-  // ---------------------------------------------------------------------------
-
   var comparisonUserTotalScore = 0;
 
   var friendScores = [];
+
+
+  // API POST Requests
+  // Handles when user submits friend form.
+  // Compares user to existing users to find best friend.
+  // Displays best friend in pop-up modal.
+  // Adds new user to userData array.
+  // ---------------------------------------------------------------------------
 
   app.post("/api/friends", function(req, res) {
 
@@ -74,6 +74,8 @@ module.exports = function(app) {
 
     // OMG we are getting a best friend.
     console.log("Best friend name: " + userData[index].name);
+
+    res.send(userData[index]);
 
     // Push new user to user array.
     userData.push(req.body);

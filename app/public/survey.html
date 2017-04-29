@@ -239,12 +239,10 @@
 
 	    		// Grab the result from the AJAX post so that the best match's name and photo are displayed.
 
-	    		// Don't have match stuff working yet, so forcing data to return to see modal.
+	    		// Most compatible friend name.
 	    		$("#matchName").text(data.name);
-	    		//$("#matchName").text(userData[0].name);
 
 	    		$('#matchImg').attr("src", data.photo);
-	    		//$('#matchImg').attr("src", userData[0].photo);
 
 		    	// Show the modal with the best match 
 		    	$("#resultsModal").modal('toggle');
