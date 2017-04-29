@@ -2,7 +2,7 @@
   "name": "friendfinder",
   "version": "0.0.1",
   "description": "Compatibility-based friend finder application using node express and other goodies",
-  "main": "app/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
