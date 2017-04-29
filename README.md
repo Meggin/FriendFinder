@@ -19,9 +19,9 @@ I was able to roll easily through the scaffolding of the site, through the front
 
 Finally, I woke up at 4 AM, with that buzzing feeling, sat down with coffee and water, and worked my way through the logic. And I figured it out. It was the most amazing feeling. To know I can still solve trickier problems in the midst of crazy life.
 
-I've been told by several engineers around me that they truly don't believe that people can truly write code, if they have too many other things to focus on (like families, etc.)
+I've had multiple discussions with engineers about the balance between coding and outside interests. And based on these discussions, I worried that I might not be able to learn to code, as I'm a mom, and I have a job, and those 'distractions' might not allow me to properly focus.
 
-I respect that difficulty-- I really do. But it is possible to make the time, if you truly love the game of it.
+This week I felt this reality, but I also managed to figure it out, by finally getting a quiet space and powering through it. I suspect I learned a lot in my failed attempts too. The solution will stick with me.
 
 I also wanted to add one last thing-- I would like to refactor a bit, add better comments, etc., but I'm seriously running out of time. Family is arriving-- and once they are here, I just won't be able to do anymore.
 
